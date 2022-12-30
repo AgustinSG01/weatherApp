@@ -7,7 +7,7 @@ export default function Card(props) {
     <div className={style.cardContainer}>
       <div className={style.cardTitle}>
         <Link to={`/${props.id}`} className={style.link}>
-        <h4>{props.name}</h4>
+          <h4>{props.name}</h4>
         </Link>
         <button onClick={() => props.onClose(props.id)}>
           <svg
