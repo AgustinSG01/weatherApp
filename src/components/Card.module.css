@@ -1,0 +1,53 @@
+.cardContainer {
+    border: 1px solid;
+    border-radius: 5px;
+    /* overflow: hidden; */
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 130px;
+    background-color: rgb(45, 45, 45);
+}
+
+.cardTitle {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    background-color: white;
+}
+
+.cardTitle h4 {
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+.cardTitle button {
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+    color: rgb(255, 120, 120);
+}
+
+.cardInfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cardInfo {
+    display: flex;
+    gap: 10px;
+}
+
+.cardInfo p {
+    color: white;
+}
+
+.link {
+    text-decoration: none;
+    justify-content: center;
+    color: black;
+}
