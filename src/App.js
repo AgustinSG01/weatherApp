@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./App.css";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
-import City from "./components/City";
+import Swal from 'sweetalert2'
 
 export default function App() {
   const [cities, setCities] = useState([]);
@@ -13,6 +12,7 @@ export default function App() {
     )
       .then((r) => r.json())
       .then((recurso) => {
+        console.log("soy la ciudad", recurso)
         if (recurso.main !== undefined) {
           const ciudad = {
             min: Math.round(recurso.main.temp_min),
@@ -26,16 +26,33 @@ export default function App() {
             clouds: recurso.clouds.all,
             latitud: recurso.coord.lat,
             longitud: recurso.coord.lon,
+            humedad: recurso.main.humidity
           };
           if (cities.length === 6) {
             cities.shift();
           }
           const exist = cities.filter((e) => e.id === ciudad.id);
           exist.length
-            ? alert("Ciudad ya existente")
+            ? Swal.fire({
+              position: "center",
+              icon: "info",
+              title: "The city has already been added",
+              showConfirmButton: false,
+              timer: 1500,
+              background: "#1B1B1B",
+              color: "#DDDDDD"
+            })
             : setCities((oldCities) => [...oldCities, ciudad]);
         } else {
-          alert("Ciudad no encontrada");
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "City not found",
+            showConfirmButton: false,
+            timer: 1500,
+            background: "#1B1B1B",
+            color: "#DDDDDD"
+          });
         }
       });
   }
@@ -45,7 +62,7 @@ export default function App() {
   }
 
   return (
-    <div className="App">
+    <div className="w-full min-h-screen">
       <Routes>
         <Route
           path="/"
@@ -53,7 +70,6 @@ export default function App() {
             <Home onSearch={onSearch} cities={cities} onClose={onClose} />
           }
         />
-        <Route path="/:id" element={<City ciudad={cities} />} />
       </Routes>
     </div>
   );

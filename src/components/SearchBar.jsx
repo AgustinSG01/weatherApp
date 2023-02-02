@@ -1,32 +1,39 @@
 import React, { useState } from "react";
-import style from "./Searchbar.module.css";
 export default function SearchBar({ onSearch }) {
   const [valor, setValor] = useState("");
 
   return (
-    <div className={style.searchBar}>
+    <div className="pt-2 relative mx-auto text-gray-600">
       <form
-        className={style.form}
         onSubmit={(e) => {
           e.preventDefault();
           setValor("");
           onSearch(valor);
         }}
       >
-        <div className={style.group}>
-          <svg className={style.icon} aria-hidden="true" viewBox="0 0 24 24">
-            <g>
-              <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-            </g>
+        <input
+          className="border-2 border-gray-300 bg-white h-10 px-3 pr-16 rounded-lg text-sm focus:outline-none"
+          name="search"
+          placeholder="Search a city..."
+          value={valor}
+          onChange={(e) => setValor(e.target.value)}
+        />
+        <button type="submit" className="absolute right-0 top-0 mt-3 mr-3">
+          <svg
+            width="20"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M18.319 14.4326C20.7628 11.2941 20.542 6.75347 17.6569 3.86829C14.5327 0.744098 9.46734 0.744098 6.34315 3.86829C3.21895 6.99249 3.21895 12.0578 6.34315 15.182C9.22833 18.0672 13.769 18.2879 16.9075 15.8442C16.921 15.8595 16.9351 15.8745 16.9497 15.8891L21.1924 20.1317C21.5829 20.5223 22.2161 20.5223 22.6066 20.1317C22.9971 19.7412 22.9971 19.1081 22.6066 18.7175L18.364 14.4749C18.3493 14.4603 18.3343 14.4462 18.319 14.4326ZM16.2426 5.28251C18.5858 7.62565 18.5858 11.4246 16.2426 13.7678C13.8995 16.1109 10.1005 16.1109 7.75736 13.7678C5.41421 11.4246 5.41421 7.62565 7.75736 5.28251C10.1005 2.93936 13.8995 2.93936 16.2426 5.28251Z"
+              fill="currentColor"
+            />
           </svg>
-          <input
-            value={valor}
-            onChange={(e) => setValor(e.target.value)}
-            placeholder="Search"
-            type="search"
-            className={style.input}
-          />
-        </div>
+        </button>
       </form>
     </div>
   );
